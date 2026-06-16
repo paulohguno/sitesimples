@@ -191,12 +191,12 @@ function CourseSection({ course, index }) {
                 </div>
             </div>
 
-            {/* Modificado: Botão alinhado embaixo no mobile e nas laterais no PC */}
+            {/* Modificado: Botão alinhado embaixo no mobile e nas laterais no PC (ajustado para centralizar verticalmente no PC) */}
             <div
                 className={`absolute z-10 flex transition-all duration-500 ease-in-out
                     w-full justify-center bottom-6
-                    md:w-auto md:bottom-auto md:inset-y-0 md:items-center
-                    ${isLeft ? "md:right-0 md:pr-10" : "md:left-0 md:pl-10"}
+                    md:w-auto md:bottom-auto md:top-1/2 md:-translate-y-1/2
+                    ${isLeft ? "md:right-10" : "md:left-10"}
                     ${hovered ? "opacity-100 scale-100" : "opacity-0 scale-90 pointer-events-none"}
                 `}
             >
