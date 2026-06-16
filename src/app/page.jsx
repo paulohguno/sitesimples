@@ -148,11 +148,12 @@ function CourseSection({ course, index }) {
 
     const isLeft = course.slideDir === "left";
 
+    // Modificado: Sobe o texto no mobile e joga para os lados no PC
     const translateClass = hovered
         ? isLeft
-            ? "-translate-x-[20%]"
-            : "translate-x-[20%]"
-        : "translate-x-0";
+            ? "-translate-y-6 md:translate-y-0 md:-translate-x-[20%]"
+            : "-translate-y-6 md:translate-y-0 md:translate-x-[20%]"
+        : "translate-y-0 translate-x-0";
 
     return (
         <section
@@ -190,21 +191,24 @@ function CourseSection({ course, index }) {
                 </div>
             </div>
 
+            {/* Modificado: Botão alinhado embaixo no mobile e nas laterais no PC */}
             <div
-                className={`absolute inset-y-0 flex items-center transition-all duration-500 ease-in-out
-          ${isLeft ? "right-0 pr-8" : "left-0 pl-8"}
-          ${hovered ? "opacity-100 scale-100" : "opacity-0 scale-90 pointer-events-none"}
-        `}
+                className={`absolute z-10 flex transition-all duration-500 ease-in-out
+                    w-full justify-center bottom-6
+                    md:w-auto md:bottom-auto md:inset-y-0 md:items-center
+                    ${isLeft ? "md:right-0 md:pr-10" : "md:left-0 md:pl-10"}
+                    ${hovered ? "opacity-100 scale-100" : "opacity-0 scale-90 pointer-events-none"}
+                `}
             >
                 <a
                     href={course.href}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm md:text-base
-            shadow-2xl border-2 backdrop-blur-sm
-            transition-transform duration-200 hover:scale-105 active:scale-95
-            ${course.btnStyle}
-          `}
+                        shadow-2xl border-2 backdrop-blur-sm
+                        transition-transform duration-200 hover:scale-105 active:scale-95
+                        ${course.btnStyle}
+                    `}
                     onClick={(e) => e.stopPropagation()}
                 >
                     Acessar curso
