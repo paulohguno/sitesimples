@@ -25,6 +25,7 @@ const courses = [
         textColor: "text-white",
         btnStyle: "bg-white/10 text-white border-white/30",
     },
+    
 ];
 
 function InteractiveGrid({ mouseRef }) {
@@ -74,7 +75,7 @@ function InteractiveGrid({ mouseRef }) {
             currentMouse.y += (mouseRef.current.y - currentMouse.y) * 0.08;
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.strokeStyle = "rgba(255, 255, 255, 0.12)";
+            ctx.strokeStyle = "rgba(255, 255, 255, 0.15)";
             ctx.lineWidth = 1;
 
             for (let r = 0; r < rows; r++) {
@@ -205,7 +206,7 @@ function CourseSection({ course, index }) {
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm md:text-base
-                        shadow-2xl border-2 backdrop-blur-sm
+                        shadow-2xl border-2
                         transition-transform duration-200 hover:scale-105 active:scale-95
                         ${course.btnStyle}
                     `}
