@@ -32,7 +32,7 @@ const courses = [
         title: "48 Receitas das seleções da copa",
         subtitle: "a receita tradicional de cada país",
         bg: "/curso4.jpg",
-        bgPosition: "center top",
+        bgPosition: "down",
         href: "https://go.hotmart.com/L106406197D?dp=1",
         slideDir: "left",
         overlayColor: "bg-orange-600",
