@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Analytics } from "@vercel/analytics/next" 
+import { Analytics } from "@vercel/analytics/next"
 
 const courses = [
     {
@@ -9,24 +9,36 @@ const courses = [
         title: "40 Receitas de Maioneses",
         subtitle: "As mais saborosas do mundo",
         bg: "/curso1.jpg",
-        href: "https://pay.hotmart.com/K106277932W",
+        href: "https://go.hotmart.com/K106277932W?dp=1",
         slideDir: "left",
         overlayColor: "bg-orange-500",
         textColor: "text-white",
         btnStyle: "bg-white/10 text-white border-white/30",
     },
-    { 
+    {
         id: 2,
         title: "Petiscos e Docinhos",
         subtitle: "Receitas Gourmets exclusivas",
         bg: "/curso2.jpg",
-        href: "https://pay.hotmart.com/W106347526X",
+        href: "https://go.hotmart.com/W106347526X?dp=1",
         slideDir: "right",
         overlayColor: "bg-pink-700",
         textColor: "text-white",
         btnStyle: "bg-white/10 text-white border-white/30",
     },
-    
+    {
+        id: 3,
+        title: "48 Receitas das seleções da copa",
+        subtitle: "a receita tradicional de cada país",
+        bg: "/curso4.jpg",
+        bgPosition: "center top",
+        href: "https://go.hotmart.com/L106406197D?dp=1",
+        slideDir: "left",
+        overlayColor: "bg-orange-600",
+        textColor: "text-white",
+        btnStyle: "bg-white/10 text-white border-white/30",
+    },
+
 ];
 
 function InteractiveGrid({ mouseRef }) {
@@ -91,7 +103,7 @@ function InteractiveGrid({ mouseRef }) {
                     if (dist < maxDist) {
                         const force = Math.pow((maxDist - dist) / maxDist, 2);
                         const angle = Math.atan2(dy, dx);
-                        
+
                         p.vx += Math.cos(angle) * force * 0.8;
                         p.vy += Math.sin(angle) * force * 0.8;
                     }
@@ -108,7 +120,7 @@ function InteractiveGrid({ mouseRef }) {
             }
 
             ctx.beginPath();
-            
+
             for (let r = 0; r < rows; r++) {
                 for (let c = 0; c < cols; c++) {
                     const p = points[r][c];
@@ -171,9 +183,8 @@ function CourseSection({ course, index }) {
             />
 
             <div
-                className={`absolute inset-0 ${course.overlayColor} transition-opacity duration-500 ${
-                    hovered ? "opacity-40" : "opacity-70"
-                }`}
+                className={`absolute inset-0 ${course.overlayColor} transition-opacity duration-500 ${hovered ? "opacity-40" : "opacity-70"
+                    }`}
             />
 
             <div
@@ -230,9 +241,8 @@ function CourseSection({ course, index }) {
             </div>
 
             <div
-                className={`absolute top-0 bottom-0 w-1 ${
-                    index % 2 === 0 ? "left-0" : "right-0"
-                } bg-white/20`}
+                className={`absolute top-0 bottom-0 w-1 ${index % 2 === 0 ? "left-0" : "right-0"
+                    } bg-white/20`}
             />
         </section>
     );
