@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect, useRef } from "react";
@@ -163,11 +162,10 @@ function CourseSection({ course, index }) {
 
     const isLeft = course.slideDir === "left";
     
-    // Fica ativo se o mouse estiver em cima (PC) OU se a tela foi tocada uma vez (Mobile)
     const isActive = isHovered || hasTouched;
 
     const translateClass = isActive
-        ? hasTouched // Se foi toque (mobile), sobe o texto. Se foi hover (PC), joga pro lado.
+        ? hasTouched 
             ? "-translate-y-6 md:translate-y-0" + (isLeft ? " md:-translate-x-[20%]" : " md:translate-x-[20%]")
             : isLeft
                 ? "-translate-y-6 md:translate-y-0 md:-translate-x-[20%]"
@@ -176,7 +174,7 @@ function CourseSection({ course, index }) {
 
     return (
         <section
-            className="relative w-full overflow-hidden cursor-pointer min-h-[25vh] flex-1"
+            className="relative w-full overflow-hidden min-h-[25vh] flex-1"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             onTouchStart={() => setHasTouched(true)}
@@ -225,7 +223,7 @@ function CourseSection({ course, index }) {
                     href={course.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm md:text-base
+                    className={`flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm md:text-base cursor-pointer
                         shadow-2xl border-2 relative
                         transition-transform duration-200 hover:scale-105 active:scale-95
                         ${course.btnStyle}
@@ -247,17 +245,6 @@ function CourseSection({ course, index }) {
                     </svg>
                 </a>
             </div>
-
-            {/* Link invisível para mobile só fica ativo se o card já foi tocado para revelar */}
-            {hasTouched && (
-                <a 
-                    href={course.href} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="absolute inset-0 z-10 md:hidden"
-                    aria-label={`Acessar curso ${course.title}`}
-                />
-            )}
 
             <div
                 className={`absolute top-0 bottom-0 w-1 ${
