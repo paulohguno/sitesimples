@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Analytics } from "@vercel/analytics/next"
+// Importação do Analytics comentada caso não esteja usando, para evitar erros
+// import { Analytics } from "@vercel/analytics/next"
 
 const courses = [
     {
@@ -45,7 +46,9 @@ function InteractiveGrid({ mouseRef }) {
 
     useEffect(() => {
         const canvas = canvasRef.current;
+        if (!canvas) return;
         const ctx = canvas.getContext("2d");
+        if (!ctx) return;
         let animationFrameId;
 
         let points = [];
@@ -166,20 +169,26 @@ function CourseSection({ course, index }) {
             onTouchStart={() => setHasTouched(true)}
             aria-label={`Curso: ${course.title}`}
         >
+            {/* Imagem de Fundo */}
             <div
                 className="absolute inset-0 bg-cover bg-center"
-                style={{ 
+                style={{
                     backgroundImage: `url(${course.bg})`,
                     backgroundPosition: course.bgPosition || "center"
                 }}
             />
 
+            {/* Camada de Cor (Overlay) - Efeito de Hover Ativado no PC */}
             <div
-                className={`absolute inset-0 ${course.overlayColor} transition-opacity duration-500 ${hasTouched ? "opacity-40" : "opacity-70"} md:opacity-70 md:group-hover:opacity-40`}
+                className={`absolute inset-0 ${course.overlayColor} transition-opacity duration-500 ${hasTouched ? "opacity-40" : "opacity-70"
+                    } md:opacity-70 md:group-hover:opacity-40`} // md:group-hover reativado aqui
             />
 
+            {/* Container do Texto - Efeito de Deslizar Ativado no PC */}
             <div
-                className={`absolute inset-0 flex items-center justify-center transition-transform duration-500 ease-in-out ${hasTouched ? "-translate-y-6" : "translate-y-0"} md:translate-y-0 ${isLeft ? "md:group-hover:-translate-x-[20%]" : "md:group-hover:translate-x-[20%]"}`}
+                className={`absolute inset-0 flex items-center justify-center transition-transform duration-500 ease-in-out ${hasTouched ? "-translate-y-6" : "translate-y-0"
+                    } md:translate-y-0 ${isLeft ? "md:group-hover:-translate-x-[20%]" : "md:group-hover:translate-x-[20%]"
+                    }`} // md:group-hover reativado aqui
             >
                 <div className="text-center px-8 select-none pointer-events-none">
                     <h2
@@ -195,8 +204,11 @@ function CourseSection({ course, index }) {
                 </div>
             </div>
 
+            {/* Container do Botão - FIXO E VISÍVEL NO PC */}
             <div
-                className={`absolute z-30 flex transition-all duration-500 ease-in-out w-full justify-center bottom-6 md:w-auto md:bottom-auto md:top-1/2 md:-translate-y-1/2 ${isLeft ? "md:right-10" : "md:left-10"} ${hasTouched ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-90 pointer-events-none"} md:opacity-100 md:scale-100 md:pointer-events-auto`}
+                className={`absolute z-30 flex transition-all duration-500 ease-in-out w-full justify-center bottom-6 md:w-auto md:bottom-auto md:top-1/2 md:-translate-y-1/2 ${isLeft ? "md:right-10" : "md:left-10"
+                    } ${hasTouched ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-90 pointer-events-none"
+                    } md:opacity-100 md:scale-100 md:pointer-events-auto`} // Mantido fixo/visível no desktop
             >
                 <a
                     href={course.href}
@@ -221,10 +233,10 @@ function CourseSection({ course, index }) {
                 </a>
             </div>
 
+            {/* Linha divisória lateral */}
             <div
-                className={`absolute top-0 bottom-0 w-1 ${
-                    index % 2 === 0 ? "left-0" : "right-0"
-                } bg-white/20`}
+                className={`absolute top-0 bottom-0 w-1 ${index % 2 === 0 ? "left-0" : "right-0"
+                    } bg-white/20`}
             />
         </section>
     );
@@ -263,6 +275,7 @@ export default function LandingPage() {
 
     return (
         <main className="min-h-screen flex flex-col font-sans">
+            {/* <Analytics /> */}
             <section
                 className="relative w-full bg-black flex flex-col items-center justify-center py-10 px-6 overflow-hidden min-h-[35vh]"
                 onMouseMove={handleMouseMove}
